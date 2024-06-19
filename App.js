@@ -1,19 +1,17 @@
 import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 
 const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text>Home Screen</Text>
+      <Text style={styles.marginBottom20}>Home Screen</Text>
       <Button
+        style={styles.button}
         title="Pergi ke Progate"
         onPress={() => {
-          navigation.navigate("Progate", {
-            name: "Ninja Ken",
-            language: "React Native",
-          });
+          navigation.navigate("Progate");
         }}
       />
     </View>
@@ -23,23 +21,22 @@ const HomeScreen = ({ navigation }) => {
 const ProgateScreen = ({ route, navigation }) => {
   return (
     <View style={styles.container}>
-      <Text>Welcome to Progate!</Text>
-      <Text>Welcome to Progate, {route.params.name}!</Text>
-      <Text>Ayo belajar {route.params.language}!</Text>
+      <Text>Welcome to Progate</Text>
+      <Text style={styles.marginBottom20}>Ayo belajar!</Text>
       <Button title="Kembali" onPress={() => navigation.goBack()} />
     </View>
   );
 };
 
-const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Progate" component={ProgateScreen} />
-      </Stack.Navigator>
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="Home" component={HomeScreen} />
+        <Drawer.Screen name="Progate" component={ProgateScreen} />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }
@@ -49,5 +46,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+  },
+  marginBottom20: {
+    marginBottom: 20,
   },
 });
