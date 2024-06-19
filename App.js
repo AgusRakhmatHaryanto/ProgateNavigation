@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import HomeIcon from "./assets/buttomTabIcons/house.svg";
 import ProgateIcon from "./assets/buttomTabIcons/progate.svg";
@@ -31,33 +31,17 @@ const ProgateScreen = ({ navigation }) => {
   );
 };
 
-const Tab = createBottomTabNavigator();
+const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{
-            tabBarLabel: "Home",
-            tabBarIcon: () => (
-              <Image source={HomeIcon} style={styles.homeIcon} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Progate"
-          component={ProgateScreen}
-          options={{
-            tabBarLabel: "Progate",
-            tabBarIcon: () => (
-              <Image source={ProgateIcon} style={styles.progateIcon} />
-            ),
-          }}
-        />
-      </Tab.Navigator>
+
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="Home" component={HomeScreen} />
+        <Drawer.Screen name="Progate" component={ProgateScreen} />
+      </Drawer.Navigator>
+
     </NavigationContainer>
   );
 }
@@ -70,13 +54,5 @@ const styles = StyleSheet.create({
   },
   marginBottom20: {
     marginBottom: 20,
-  },
-  homeIcon: {
-    width: 20,
-    height: 20,
-  },
-  progateIcon: {
-    width: 40,
-    height: 40,
   },
 });
