@@ -1,7 +1,10 @@
 import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, Text, StyleSheet, Image, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+
+import HomeIcon from "./assets/buttomTabIcons/house.svg";
+import ProgateIcon from "./assets/buttomTabIcons/progate.svg";
 
 const HomeScreen = ({ navigation }) => {
   return (
@@ -18,7 +21,7 @@ const HomeScreen = ({ navigation }) => {
   );
 };
 
-const ProgateScreen = ({ route, navigation }) => {
+const ProgateScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text>Welcome to Progate</Text>
@@ -33,10 +36,12 @@ const Drawer = createDrawerNavigator();
 export default function App() {
   return (
     <NavigationContainer>
+
       <Drawer.Navigator initialRouteName="Home">
         <Drawer.Screen name="Home" component={HomeScreen} />
         <Drawer.Screen name="Progate" component={ProgateScreen} />
       </Drawer.Navigator>
+
     </NavigationContainer>
   );
 }
