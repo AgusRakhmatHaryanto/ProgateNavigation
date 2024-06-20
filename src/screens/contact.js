@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, TextInput, Button, StyleSheet } from "react-native";
 
 export default function Contact() {
+  useEffect(() => {
+    alert("Contact screen is mounted");
+    return () => {
+      alert("Contact screen is unmounted");
+    };
+  });
   return (
     <View style={styles.container}>
       <TextInput placeholder="Nama Anda" style={styles.textInput} />
