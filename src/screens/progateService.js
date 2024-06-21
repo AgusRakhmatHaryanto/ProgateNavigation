@@ -1,13 +1,19 @@
 import React, { useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-export default function ProgateService() {
+export default function ProgateService({ navigation }) {
   useEffect(() => {
-    alert('ProgateService screen is mounted')
-    return () => {
-      alert('ProgateService screen is unmounted')
-    }
-  })
+    // navigation.addListener("focus", () =>
+    //   alert("ProgateService screen is focused")
+    // );
+    // navigation.addListener("blur", () =>
+    //   alert("ProgateService screen is unfocused")
+    // );
+    navigation.addListener("state", (event) => {
+      alert("Navigation state changed");
+      console.log(event.data.state);
+    });
+  }, []);
 
   return (
     <View style={styles.container}>
